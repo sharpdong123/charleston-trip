@@ -57,7 +57,7 @@ body {
   padding: 3rem 2rem 4rem;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(165deg, var(--ocean-deep) 0%, var(--ocean) 35%, var(--ocean-light) 65%, var(--coral-light) 100%);
+  background: linear-gradient(165deg, var(--ocean-deep) 0%, var(--ocean) 45%, var(--ocean) 75%, var(--ocean-deep) 100%);
 }
 
 .hero::before {
@@ -68,31 +68,40 @@ body {
   height: 120px;
   background: var(--sand);
   clip-path: ellipse(55% 100% at 50% 100%);
+  z-index: 1;
 }
 
 .hero::after {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(to bottom, transparent 50%, rgba(42, 37, 32, 0.15) 100%);
+  background: linear-gradient(to bottom, transparent 40%, rgba(20, 30, 40, 0.55) 100%);
 }
 
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   max-width: 720px;
   margin: 0 auto;
   width: 100%;
+  padding-bottom: 3rem;
 }
 
 .hero-tag {
   font-family: 'DM Mono', monospace;
   font-size: 11px;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.92);
   margin-bottom: 1.5rem;
+}
+
+.hero-tag .hero-dates {
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: 1px solid rgba(255,255,255,0.35);
+  color: var(--shell);
 }
 
 .hero h1 {
@@ -110,24 +119,32 @@ body {
 .hero-subtitle {
   font-family: 'Playfair Display', serif;
   font-size: clamp(1.4rem, 4vw, 2.2rem);
-  color: rgba(255,255,255,0.8);
+  color: rgba(255,255,255,0.95);
   font-weight: 400;
   letter-spacing: 1px;
 }
 
 .hero-details {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   flex-wrap: wrap;
   margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(20, 30, 40, 0.38);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .hero-detail {
   font-family: 'DM Mono', monospace;
-  font-size: 12px;
-  font-weight: 300;
-  color: rgba(255,255,255,0.65);
-  letter-spacing: 0.5px;
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.8);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  flex: 1 1 180px;
 }
 
 .hero-detail span {
@@ -135,8 +152,11 @@ body {
   font-family: 'DM Sans', sans-serif;
   font-size: 15px;
   font-weight: 400;
-  color: var(--white);
-  margin-top: 4px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 5px;
+  line-height: 1.35;
 }
 
 /* Content */
@@ -181,7 +201,7 @@ body {
   border-radius: 12px;
   overflow: hidden;
   aspect-ratio: 16/10;
-  background: var(--sand-dark);
+  background: linear-gradient(135deg, var(--ocean-light) 0%, var(--marsh-light) 100%);
 }
 
 .photo-card img {
@@ -190,6 +210,13 @@ body {
   object-fit: cover;
   display: block;
   transition: transform 0.6s ease;
+  background: var(--sand-dark);
+}
+
+.photo-card img.failed,
+.block-photo img.failed,
+.option-thumb img.failed {
+  display: none;
 }
 
 .photo-card:hover img {
@@ -327,7 +354,7 @@ body {
   margin-top: 12px;
   aspect-ratio: 21/9;
   position: relative;
-  background: var(--sand-dark);
+  background: linear-gradient(135deg, var(--ocean) 0%, var(--marsh) 100%);
 }
 
 .block-photo img {
@@ -434,7 +461,7 @@ body {
   border-radius: 10px;
   overflow: hidden;
   flex-shrink: 0;
-  background: var(--sand-dark);
+  background: linear-gradient(135deg, var(--driftwood) 0%, var(--marsh-light) 100%);
 }
 
 .option-thumb img {
@@ -558,7 +585,7 @@ body {
 
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-tag">April 2026</div>
+    <div class="hero-tag">April 2026<span class="hero-dates">4/24 &ndash; 4/28</span></div>
     <h1>Michael <em>&amp;</em> Stephanie</h1>
     <p class="hero-subtitle">Charleston, SC</p>
     <div class="hero-details">
@@ -944,5 +971,15 @@ body {
   Michael &amp; Stephanie &middot; Charleston &middot; April 2026
 </div>
 
+<script>
+  document.querySelectorAll('img').forEach(function(img) {
+    img.addEventListener('error', function() {
+      img.classList.add('failed');
+    });
+    if (img.complete && img.naturalWidth === 0) {
+      img.classList.add('failed');
+    }
+  });
+</script>
 </body>
 </html>
