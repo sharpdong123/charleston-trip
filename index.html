@@ -50,112 +50,121 @@ body {
 
 /* Hero */
 .hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 3rem 2rem 4rem;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(165deg, var(--ocean-deep) 0%, var(--ocean) 45%, var(--ocean) 75%, var(--ocean-deep) 100%);
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0; right: 0;
-  height: 120px;
-  background: var(--sand);
-  clip-path: ellipse(55% 100% at 50% 100%);
-  z-index: 1;
+  padding: 4rem 2rem 5rem;
+  background:
+    radial-gradient(ellipse 80% 60% at 80% 0%, rgba(212, 130, 106, 0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 10% 100%, rgba(122, 139, 111, 0.25) 0%, transparent 55%),
+    linear-gradient(170deg, #1a3240 0%, #23485a 45%, #2c4f5e 100%);
 }
 
 .hero::after {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(to bottom, transparent 40%, rgba(20, 30, 40, 0.55) 100%);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 Q25 0 50 10 T100 10' stroke='rgba(255,255,255,0.04)' fill='none' stroke-width='0.3'/%3E%3Cpath d='M0 15 Q25 5 50 15 T100 15' stroke='rgba(255,255,255,0.03)' fill='none' stroke-width='0.3'/%3E%3C/svg%3E");
+  background-size: 600px 120px;
+  background-repeat: repeat;
+  opacity: 0.6;
+  pointer-events: none;
 }
 
 .hero-content {
   position: relative;
-  z-index: 3;
+  z-index: 2;
   max-width: 720px;
   margin: 0 auto;
   width: 100%;
-  padding-bottom: 3rem;
 }
 
 .hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-family: 'DM Mono', monospace;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 400;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.92);
-  margin-bottom: 1.5rem;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 1.25rem;
+  padding: 6px 12px;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 100px;
+  background: rgba(255,255,255,0.05);
 }
 
 .hero-tag .hero-dates {
-  margin-left: 10px;
-  padding-left: 10px;
-  border-left: 1px solid rgba(255,255,255,0.35);
   color: var(--shell);
+  padding-left: 10px;
+  border-left: 1px solid rgba(255,255,255,0.25);
 }
 
 .hero h1 {
   font-family: 'Playfair Display', serif;
   font-weight: 400;
-  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-size: clamp(2.5rem, 6.5vw, 4.25rem);
   color: var(--white);
   line-height: 1.05;
-  letter-spacing: -1px;
-  margin-bottom: 0.5rem;
+  letter-spacing: -1.5px;
+  margin-bottom: 0.35rem;
 }
 
-.hero h1 em { font-style: italic; color: var(--shell); }
+.hero h1 em { font-style: italic; color: var(--shell); font-weight: 400; }
 
 .hero-subtitle {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.4rem, 4vw, 2.2rem);
-  color: rgba(255,255,255,0.95);
+  font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+  font-style: italic;
+  color: rgba(255,255,255,0.82);
   font-weight: 400;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
+  margin-bottom: 2rem;
 }
 
 .hero-details {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 0;
   padding: 1.25rem 1.5rem;
-  background: rgba(20, 30, 40, 0.38);
-  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
   border-radius: 14px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .hero-detail {
   font-family: 'DM Mono', monospace;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 400;
-  color: rgba(255,255,255,0.8);
-  letter-spacing: 1.2px;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  flex: 1 1 180px;
+  padding: 0 1rem;
+  border-left: 1px solid rgba(255,255,255,0.12);
+}
+
+.hero-detail:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+
+.hero-detail:last-child {
+  padding-right: 0;
 }
 
 .hero-detail span {
   display: block;
   font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 400;
   color: #FFFFFF;
   letter-spacing: 0;
   text-transform: none;
-  margin-top: 5px;
+  margin-top: 6px;
   line-height: 1.35;
 }
 
@@ -170,8 +179,9 @@ body {
   background: var(--white);
   border-radius: 16px;
   padding: 1.25rem 1.5rem;
-  margin-bottom: 4rem;
+  margin-bottom: 3.5rem;
   border: 1px solid var(--sand-dark);
+  box-shadow: 0 1px 3px rgba(42, 37, 32, 0.04);
   font-size: 14px;
   color: var(--ink-soft);
   line-height: 1.7;
@@ -204,23 +214,36 @@ body {
   background: linear-gradient(135deg, var(--ocean-light) 0%, var(--marsh-light) 100%);
 }
 
-.photo-card img {
+.photo-card iframe,
+.block-photo iframe,
+.option-thumb iframe {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  border: 0;
   display: block;
-  transition: transform 0.6s ease;
-  background: var(--sand-dark);
+  pointer-events: none;
+  transition: filter 0.3s ease;
 }
 
-.photo-card img.failed,
-.block-photo img.failed,
-.option-thumb img.failed {
-  display: none;
+.photo-card.active iframe,
+.block-photo.active iframe,
+.option-thumb.active iframe {
+  pointer-events: auto;
 }
 
-.photo-card:hover img {
-  transform: scale(1.05);
+.photo-card:not(.active)::after,
+.block-photo:not(.active)::after,
+.option-thumb:not(.active)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.block-photo,
+.option-thumb {
+  position: relative;
 }
 
 .photo-card .photo-label {
@@ -228,13 +251,14 @@ body {
   bottom: 0;
   left: 0; right: 0;
   padding: 24px 12px 10px;
-  background: linear-gradient(to top, rgba(42,37,32,0.7) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(42,37,32,0.75) 0%, transparent 100%);
   font-family: 'DM Mono', monospace;
   font-size: 10px;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255,255,255,0.95);
+  pointer-events: none;
 }
 
 .photo-card.tall {
@@ -311,8 +335,14 @@ body {
   border-radius: 14px;
   padding: 1.1rem 1.35rem;
   border: 1px solid transparent;
-  transition: border-color 0.3s ease;
+  box-shadow: 0 1px 3px rgba(42, 37, 32, 0.04);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
   position: relative;
+}
+
+.block:hover {
+  box-shadow: 0 4px 12px rgba(42, 37, 32, 0.08);
+  transform: translateY(-1px);
 }
 
 .block::before {
@@ -326,7 +356,6 @@ body {
   background: var(--driftwood);
 }
 
-.block:hover { border-color: var(--sand-dark); }
 
 .block-header {
   display: flex;
@@ -369,13 +398,14 @@ body {
   bottom: 0;
   left: 0; right: 0;
   padding: 20px 12px 8px;
-  background: linear-gradient(to top, rgba(42,37,32,0.6) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(42,37,32,0.7) 0%, transparent 100%);
   font-family: 'DM Mono', monospace;
   font-size: 10px;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255,255,255,0.95);
+  pointer-events: none;
 }
 
 /* Badges */
@@ -416,6 +446,7 @@ body {
   border-radius: 14px;
   padding: 1.1rem 1.35rem;
   border: 1px solid transparent;
+  box-shadow: 0 1px 3px rgba(42, 37, 32, 0.04);
   position: relative;
 }
 
@@ -456,12 +487,13 @@ body {
 .option-with-photo:last-child { border-bottom: none; }
 
 .option-thumb {
-  width: 56px;
-  height: 56px;
+  width: 84px;
+  height: 84px;
   border-radius: 10px;
   overflow: hidden;
   flex-shrink: 0;
   background: linear-gradient(135deg, var(--driftwood) 0%, var(--marsh-light) 100%);
+  box-shadow: 0 2px 8px rgba(42, 37, 32, 0.06);
 }
 
 .option-thumb img {
@@ -490,6 +522,7 @@ body {
   border-radius: 20px;
   padding: 2rem;
   border: 1px solid var(--sand-dark);
+  box-shadow: 0 2px 8px rgba(42, 37, 32, 0.05);
   margin-top: 2rem;
 }
 
@@ -565,9 +598,24 @@ body {
 
 /* Mobile */
 @media (max-width: 600px) {
-  .hero { padding: 2rem 1.5rem 3.5rem; }
+  .hero { padding: 2.5rem 1.5rem 3rem; }
   .content { padding: 2rem 1.25rem 4rem; }
-  .hero-details { gap: 1.25rem; }
+  .hero-details {
+    grid-template-columns: 1fr;
+    padding: 1rem 1.25rem;
+  }
+  .hero-detail {
+    padding: 0.75rem 0;
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .hero-detail:first-child {
+    padding-top: 0;
+    border-top: none;
+  }
+  .hero-detail:last-child {
+    padding-bottom: 0;
+  }
   .timeline { margin-left: 12px; padding-left: 24px; }
   .block::before, .options-block::before { left: -31px; }
   .callout { margin-left: calc(12px + 24px + 1px); }
@@ -575,7 +623,7 @@ body {
   .photo-strip { margin-left: 37px; }
   .photo-strip.triple { grid-template-columns: 1fr 1fr; }
   .option-with-photo { flex-direction: column; align-items: flex-start; }
-  .option-thumb { width: 100%; height: 120px; border-radius: 10px; }
+  .option-thumb { width: 100%; height: 140px; border-radius: 10px; }
 }
 </style>
 </head>
@@ -627,7 +675,7 @@ body {
         </div>
         <p>Arrive at the resort, check in, and crash. The trip starts tomorrow &mdash; no need to do anything tonight.</p>
         <div class="block-photo">
-          <img src="https://images.unsplash.com/photo-1562932831-afcfe735966c?w=800&q=80" alt="Charleston harbor at night" loading="lazy">
+          <iframe src="https://maps.google.com/maps?q=Charleston+Harbor+Resort+Mount+Pleasant+SC&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Charleston Harbor Resort map"></iframe>
           <span class="photo-label">Charleston Harbor</span>
         </div>
       </div>
@@ -648,11 +696,11 @@ body {
 
     <div class="photo-strip">
       <div class="photo-card">
-        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&q=80" alt="Beach morning" loading="lazy">
+        <iframe src="https://maps.google.com/maps?q=Charleston+Harbor+Resort+Beach+Mount+Pleasant+SC&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Resort beach map"></iframe>
         <span class="photo-label">Resort beach</span>
       </div>
       <div class="photo-card">
-        <img src="https://images.unsplash.com/photo-1535572290543-960a8046f5af?w=600&q=80" alt="Driving range view" loading="lazy">
+        <iframe src="https://maps.google.com/maps?q=Patriots+Point+Links+Mount+Pleasant+SC&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Patriots Point Links map"></iframe>
         <span class="photo-label">Patriots Point Links</span>
       </div>
     </div>
@@ -686,7 +734,7 @@ body {
         <span class="badge confirmed">Reservation made</span>
         <p>Sunset drinks at <span class="venue">Red&rsquo;s Ice House</span> &mdash; live music, shrimp boats drifting by. Dinner at <span class="venue">NICO</span> on Shem Creek.</p>
         <div class="block-photo">
-          <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Waterfront seafood dining" loading="lazy">
+          <iframe src="https://maps.google.com/maps?q=NICO+Restaurant+Shem+Creek+Mount+Pleasant+SC&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy" title="NICO on Shem Creek map"></iframe>
           <span class="photo-label">Shem Creek at sunset</span>
         </div>
       </div>
@@ -713,7 +761,7 @@ body {
         <span class="badge notebook">The Notebook</span>
         <p><span class="venue">Cypress Gardens</span> &mdash; the swamp where they filmed the rowboat scene. Opens at 9am. You can rent a rowboat and paddle through the same water. ~$10/person admission. Allow about 2 hours for the boat ride and trails.</p>
         <div class="block-photo">
-          <img src="https://images.unsplash.com/photo-1541592553160-82008b127ccb?w=800&q=80" alt="Cypress swamp with Spanish moss" loading="lazy">
+          <iframe src="https://maps.google.com/maps?q=Cypress+Gardens+Moncks+Corner+SC&t=&z=14&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Cypress Gardens map"></iframe>
           <span class="photo-label">Cypress Gardens</span>
         </div>
       </div>
@@ -729,7 +777,7 @@ body {
         </div>
         <p>Drive to downtown Charleston. Walk <span class="venue">Rainbow Row</span> and <span class="venue">The Battery</span> &mdash; pastel row houses and the waterfront promenade. If it&rsquo;s Saturday, catch the tail end of the <span class="venue">Farmers Market</span> at Marion Square (closes 2pm).</p>
         <div class="block-photo">
-          <img src="https://images.unsplash.com/photo-1569587112025-0d460e81a126?w=800&q=80" alt="Rainbow Row Charleston" loading="lazy">
+          <iframe src="https://maps.google.com/maps?q=Rainbow+Row+Charleston+SC&t=&z=17&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Rainbow Row map"></iframe>
           <span class="photo-label">Rainbow Row</span>
         </div>
       </div>
@@ -747,7 +795,7 @@ body {
         </div>
         <div class="option-with-photo">
           <div class="option-thumb">
-            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=200&q=80" alt="Fine dining candlelit" loading="lazy">
+            <iframe src="https://maps.google.com/maps?q=Peninsula+Grill+Charleston+SC&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Peninsula Grill map"></iframe>
           </div>
           <div class="option-info">
             <span class="option-name">Peninsula Grill</span>
@@ -756,7 +804,7 @@ body {
         </div>
         <div class="option-with-photo">
           <div class="option-thumb">
-            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=200&q=80" alt="Italian restaurant" loading="lazy">
+            <iframe src="https://maps.google.com/maps?q=Sorelle+Restaurant+Charleston+SC&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Sorelle map"></iframe>
           </div>
           <div class="option-info">
             <span class="option-name">Sorelle</span>
@@ -765,7 +813,7 @@ body {
         </div>
         <div class="option-with-photo">
           <div class="option-thumb">
-            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=200&q=80" alt="Spanish tapas" loading="lazy">
+            <iframe src="https://maps.google.com/maps?q=Malagon+Restaurant+Charleston+SC&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Malagon map"></iframe>
           </div>
           <div class="option-info">
             <span class="option-name">Malagon</span>
@@ -774,7 +822,7 @@ body {
         </div>
         <div class="option-with-photo">
           <div class="option-thumb">
-            <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=200&q=80" alt="Oyster bar" loading="lazy">
+            <iframe src="https://maps.google.com/maps?q=Darling+Oyster+Bar+Charleston+SC&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Darling Oyster Bar map"></iframe>
           </div>
           <div class="option-info">
             <span class="option-name">Darling Oyster Bar</span>
@@ -790,7 +838,7 @@ body {
         </div>
         <div class="option-with-photo">
           <div class="option-thumb">
-            <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=200&q=80" alt="Cocktail bar" loading="lazy">
+            <iframe src="https://maps.google.com/maps?q=Vintage+Lounge+Charleston+SC&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Vintage Lounge map"></iframe>
           </div>
           <div class="option-info">
             <span class="option-name">Vintage Lounge</span>
@@ -799,7 +847,7 @@ body {
         </div>
         <div class="option-with-photo">
           <div class="option-thumb">
-            <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=200&q=80" alt="Craft cocktails" loading="lazy">
+            <iframe src="https://maps.google.com/maps?q=The+Gin+Joint+Charleston+SC&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy" title="The Gin Joint map"></iframe>
           </div>
           <div class="option-info">
             <span class="option-name">The Gin Joint</span>
@@ -808,7 +856,7 @@ body {
         </div>
         <div class="option-with-photo">
           <div class="option-thumb">
-            <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=200&q=80" alt="Rooftop bar at night" loading="lazy">
+            <iframe src="https://maps.google.com/maps?q=The+Rooftop+Vendue+Charleston+SC&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Rooftop at Vendue map"></iframe>
           </div>
           <div class="option-info">
             <span class="option-name">Rooftop at Vendue</span>
@@ -833,7 +881,7 @@ body {
 
     <div class="photo-strip single">
       <div class="photo-card wide">
-        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1000&q=80" alt="Wide sandy beach" loading="lazy">
+        <iframe src="https://maps.google.com/maps?q=Isle+of+Palms+County+Park+SC&t=&z=14&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Isle of Palms County Park map"></iframe>
         <span class="photo-label">Isle of Palms</span>
       </div>
     </div>
@@ -859,7 +907,7 @@ body {
         </div>
         <div class="option-with-photo">
           <div class="option-thumb">
-            <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=200&q=80" alt="Harbor sunset dining" loading="lazy">
+            <iframe src="https://maps.google.com/maps?q=Charleston+Harbor+Fish+House+Mount+Pleasant+SC&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Fish House map"></iframe>
           </div>
           <div class="option-info">
             <span class="option-name">Fish House rooftop</span>
@@ -868,7 +916,7 @@ body {
         </div>
         <div class="option-with-photo">
           <div class="option-thumb">
-            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=200&q=80" alt="Fresh seafood platter" loading="lazy">
+            <iframe src="https://maps.google.com/maps?q=The+Wreck+of+the+Richard+and+Charlene+Mount+Pleasant+SC&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy" title="The Wreck map"></iframe>
           </div>
           <div class="option-info">
             <span class="option-name">The Wreck</span>
@@ -877,7 +925,7 @@ body {
         </div>
         <div class="option-with-photo">
           <div class="option-thumb">
-            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=200&q=80" alt="Intimate restaurant interior" loading="lazy">
+            <iframe src="https://maps.google.com/maps?q=The+Post+House+Inn+Mount+Pleasant+SC&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Post House map"></iframe>
           </div>
           <div class="option-info">
             <span class="option-name">Post House</span>
@@ -907,7 +955,7 @@ body {
         </div>
         <div class="option-with-photo">
           <div class="option-thumb">
-            <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=200&q=80" alt="Southern brunch spread" loading="lazy">
+            <iframe src="https://maps.google.com/maps?q=Page%27s+Okra+Grill+Mount+Pleasant+SC&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Page's Okra Grill map"></iframe>
           </div>
           <div class="option-info">
             <span class="option-name">Page&rsquo;s Okra Grill</span>
@@ -916,7 +964,7 @@ body {
         </div>
         <div class="option-with-photo">
           <div class="option-thumb">
-            <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=200&q=80" alt="Brunch with water view" loading="lazy">
+            <iframe src="https://maps.google.com/maps?q=Vickery%27s+Shem+Creek+Mount+Pleasant+SC&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Vickery's map"></iframe>
           </div>
           <div class="option-info">
             <span class="option-name">Vickery&rsquo;s</span>
@@ -925,7 +973,7 @@ body {
         </div>
         <div class="option-with-photo">
           <div class="option-thumb">
-            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=200&q=80" alt="Casual brunch spot" loading="lazy">
+            <iframe src="https://maps.google.com/maps?q=Coleman+Public+House+Mount+Pleasant+SC&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Coleman Public House map"></iframe>
           </div>
           <div class="option-info">
             <span class="option-name">Coleman Public House</span>
@@ -972,13 +1020,13 @@ body {
 </div>
 
 <script>
-  document.querySelectorAll('img').forEach(function(img) {
-    img.addEventListener('error', function() {
-      img.classList.add('failed');
+  document.querySelectorAll('.photo-card, .block-photo, .option-thumb').forEach(function(el) {
+    el.addEventListener('click', function() {
+      el.classList.add('active');
     });
-    if (img.complete && img.naturalWidth === 0) {
-      img.classList.add('failed');
-    }
+    el.addEventListener('mouseleave', function() {
+      el.classList.remove('active');
+    });
   });
 </script>
 </body>
