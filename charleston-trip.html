@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Michael & Stephanie — Charleston, SC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sand: #F5F0E8;
+  --sand-dark: #EDE6D8;
+  --driftwood: #C4B49A;
+  --marsh: #7A8B6F;
+  --marsh-light: #9AAD8E;
+  --marsh-pale: #E8EDE4;
+  --ocean: #3D6B7E;
+  --ocean-deep: #2C4F5E;
+  --ocean-light: #5A9BB5;
+  --coral: #D4826A;
+  --coral-light: #E8A892;
+  --shell: #F2DDD3;
+  --ink: #2A2520;
+  --ink-soft: #5C554D;
+  --ink-faint: #9B938A;
+  --white: #FEFCF9;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--sand);
+  color: var(--ink);
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.grain {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3rem 2rem 4rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(165deg, var(--ocean-deep) 0%, var(--ocean) 35%, var(--ocean-light) 65%, var(--coral-light) 100%);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0; right: 0;
+  height: 120px;
+  background: var(--sand);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(42, 37, 32, 0.15) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  color: var(--white);
+  line-height: 1.05;
+  letter-spacing: -1px;
+  margin-bottom: 0.5rem;
+}
+
+.hero h1 em { font-style: italic; color: var(--shell); }
+
+.hero-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  color: rgba(255,255,255,0.8);
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.hero-details {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.hero-detail {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 0.5px;
+}
+
+.hero-detail span {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--white);
+  margin-top: 4px;
+}
+
+/* Content */
+.content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 3rem 2rem 6rem;
+}
+
+.week-note {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 4rem;
+  border: 1px solid var(--sand-dark);
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.week-note strong { font-weight: 500; color: var(--ink); }
+
+/* Photo cards */
+.photo-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 16px 0 12px;
+  margin-left: 57px;
+}
+
+.photo-strip.triple {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.photo-strip.single {
+  grid-template-columns: 1fr;
+}
+
+.photo-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 16/10;
+  background: var(--sand-dark);
+}
+
+.photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.photo-card:hover img {
+  transform: scale(1.05);
+}
+
+.photo-card .photo-label {
+  position: absolute;
+  bottom: 0;
+  left: 0; right: 0;
+  padding: 24px 12px 10px;
+  background: linear-gradient(to top, rgba(42,37,32,0.7) 0%, transparent 100%);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+}
+
+.photo-card.tall {
+  aspect-ratio: 3/4;
+}
+
+.photo-card.wide {
+  aspect-ratio: 21/9;
+  grid-column: 1 / -1;
+}
+
+/* Day sections */
+.day {
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.day-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 1.75rem;
+}
+
+.day-number {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.day-number.arrive { background: var(--sand-dark); color: var(--ink-soft); }
+.day-number.beach { background: var(--ocean); color: var(--white); }
+.day-number.explore { background: var(--marsh); color: var(--white); }
+.day-number.depart { background: var(--sand-dark); color: var(--ink-soft); }
+
+.day-meta { flex: 1; }
+
+.day-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.day-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-top: 2px;
+}
+
+/* Timeline */
+.timeline {
+  margin-left: 24px;
+  padding-left: 32px;
+  border-left: 1px solid var(--driftwood);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.block {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 1.1rem 1.35rem;
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease;
+  position: relative;
+}
+
+.block::before {
+  content: '';
+  position: absolute;
+  left: -39px;
+  top: 1.35rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--driftwood);
+}
+
+.block:hover { border-color: var(--sand-dark); }
+
+.block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.block-time { font-size: 13px; font-weight: 500; color: var(--ink); }
+
+.block-distance {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--ink-faint);
+}
+
+.block p { font-size: 14px; color: var(--ink-soft); line-height: 1.7; }
+.block .venue { font-weight: 500; color: var(--ink); }
+
+/* Inline photo in block */
+.block-photo {
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 12px;
+  aspect-ratio: 21/9;
+  position: relative;
+  background: var(--sand-dark);
+}
+
+.block-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.block-photo .photo-label {
+  position: absolute;
+  bottom: 0;
+  left: 0; right: 0;
+  padding: 20px 12px 8px;
+  background: linear-gradient(to top, rgba(42,37,32,0.6) 0%, transparent 100%);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+
+.badge.confirmed { background: var(--marsh-pale); color: var(--marsh); }
+.badge.tip { background: var(--shell); color: var(--coral); }
+.badge.notebook { background: #E8E4F0; color: #6B5B8D; }
+
+/* Callout */
+.callout {
+  background: var(--marsh-pale);
+  border-radius: 12px;
+  padding: 0.85rem 1.25rem;
+  margin-left: calc(24px + 32px + 1px);
+  font-size: 13px;
+  color: var(--marsh);
+  line-height: 1.6;
+  margin-top: -4px;
+  margin-bottom: 12px;
+}
+
+.callout.notebook { background: #EDEAF3; color: #6B5B8D; }
+.callout strong { font-weight: 500; }
+
+/* Options */
+.options-block {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 1.1rem 1.35rem;
+  border: 1px solid transparent;
+  position: relative;
+}
+
+.options-block::before {
+  content: '';
+  position: absolute;
+  left: -39px;
+  top: 1.35rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--driftwood);
+}
+
+.option {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--sand);
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.option:last-child { border-bottom: none; }
+
+.option-name { font-size: 14px; font-weight: 500; color: var(--ink); white-space: nowrap; }
+.option-desc { font-size: 13px; color: var(--ink-faint); line-height: 1.5; }
+.option-dash { color: var(--driftwood); flex-shrink: 0; }
+
+/* Option with photo */
+.option-with-photo {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--sand);
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.option-with-photo:last-child { border-bottom: none; }
+
+.option-thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--sand-dark);
+}
+
+.option-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.option-info { flex: 1; }
+.option-info .option-name { font-size: 14px; margin-bottom: 2px; display: block; }
+.option-info .option-desc { font-size: 12px; display: block; }
+
+/* Divider */
+.day-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--driftwood);
+  margin: 0 auto 4rem;
+  opacity: 0.5;
+}
+
+/* Booking */
+.booking {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--sand-dark);
+  margin-top: 2rem;
+}
+
+.booking h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 18px;
+  margin-bottom: 1.25rem;
+  color: var(--ink);
+}
+
+.booking-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--sand);
+  font-size: 14px;
+}
+
+.booking-item:last-child { border-bottom: none; }
+
+.booking-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1.5px solid var(--driftwood);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.booking-check.done {
+  background: var(--marsh);
+  border-color: var(--marsh);
+  position: relative;
+}
+
+.booking-check.done::after {
+  content: '\2713';
+  position: absolute;
+  top: -1px;
+  left: 3px;
+  font-size: 11px;
+  color: white;
+  font-weight: 500;
+}
+
+.booking-text { color: var(--ink-soft); line-height: 1.5; }
+.booking-text strong { font-weight: 500; color: var(--ink); }
+
+.footer {
+  text-align: center;
+  padding: 3rem 2rem 2rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: 1px;
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-content { animation: fadeUp 1s ease-out 0.2s both; }
+.day { animation: fadeUp 0.6s ease-out both; }
+.day:nth-child(1) { animation-delay: 0.1s; }
+.day:nth-child(2) { animation-delay: 0.15s; }
+.day:nth-child(3) { animation-delay: 0.2s; }
+.day:nth-child(4) { animation-delay: 0.25s; }
+.day:nth-child(5) { animation-delay: 0.3s; }
+
+/* Mobile */
+@media (max-width: 600px) {
+  .hero { padding: 2rem 1.5rem 3.5rem; }
+  .content { padding: 2rem 1.25rem 4rem; }
+  .hero-details { gap: 1.25rem; }
+  .timeline { margin-left: 12px; padding-left: 24px; }
+  .block::before, .options-block::before { left: -31px; }
+  .callout { margin-left: calc(12px + 24px + 1px); }
+  .day-title { font-size: 19px; }
+  .photo-strip { margin-left: 37px; }
+  .photo-strip.triple { grid-template-columns: 1fr 1fr; }
+  .option-with-photo { flex-direction: column; align-items: flex-start; }
+  .option-thumb { width: 100%; height: 120px; border-radius: 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">April 2026</div>
+    <h1>Michael <em>&amp;</em> Stephanie</h1>
+    <p class="hero-subtitle">Charleston, SC</p>
+    <div class="hero-details">
+      <div class="hero-detail">
+        Staying at
+        <span>Harborside at Charleston Harbor Resort</span>
+      </div>
+      <div class="hero-detail">
+        Duration
+        <span>4 nights &middot; 5 days</span>
+      </div>
+      <div class="hero-detail">
+        Weather
+        <span>75&ndash;80&deg;F &middot; Low humidity</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="content">
+
+  <div class="week-note">
+    <strong>Happening this week:</strong> &ldquo;Come From Away&rdquo; at Dock Street Theatre through May 3. North Charleston Arts Fest Apr 29&ndash;May 3. Charleston Farmers Market Saturdays at Marion Square 8am&ndash;2pm.
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="day">
+    <div class="day-header">
+      <div class="day-number arrive">1</div>
+      <div class="day-meta">
+        <div class="day-label">Arrival</div>
+        <div class="day-title">Late night check-in</div>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="block">
+        <div class="block-header">
+          <span class="block-time">Midnight</span>
+        </div>
+        <p>Arrive at the resort, check in, and crash. The trip starts tomorrow &mdash; no need to do anything tonight.</p>
+        <div class="block-photo">
+          <img src="https://images.unsplash.com/photo-1562932831-afcfe735966c?w=800&q=80" alt="Charleston harbor at night" loading="lazy">
+          <span class="photo-label">Charleston Harbor</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider"></div>
+
+  <!-- DAY 2 -->
+  <div class="day">
+    <div class="day-header">
+      <div class="day-number beach">2</div>
+      <div class="day-meta">
+        <div class="day-label">Beach day</div>
+        <div class="day-title">Resort beach + Shem Creek evening</div>
+      </div>
+    </div>
+
+    <div class="photo-strip">
+      <div class="photo-card">
+        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&q=80" alt="Beach morning" loading="lazy">
+        <span class="photo-label">Resort beach</span>
+      </div>
+      <div class="photo-card">
+        <img src="https://images.unsplash.com/photo-1535572290543-960a8046f5af?w=600&q=80" alt="Driving range view" loading="lazy">
+        <span class="photo-label">Patriots Point Links</span>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="block">
+        <div class="block-header">
+          <span class="block-time">Morning</span>
+          <span class="block-distance">next door</span>
+        </div>
+        <p><span class="venue">Driving range at Patriots Point Links</span> &mdash; right next to the resort, walk or 1-min drive. Hit a bucket with harbor views to start the trip. Then head to the resort beach.</p>
+      </div>
+      <div class="block">
+        <div class="block-header">
+          <span class="block-time">Lunch</span>
+          <span class="block-distance">at resort</span>
+        </div>
+        <p>Keep it easy &mdash; Fish House, Tiki Bar, or poolside.</p>
+      </div>
+      <div class="block">
+        <div class="block-header">
+          <span class="block-time">Afternoon</span>
+        </div>
+        <p>More beach or resort pool. Take it slow.</p>
+      </div>
+      <div class="block">
+        <div class="block-header">
+          <span class="block-time">Evening</span>
+          <span class="block-distance">7 min drive</span>
+        </div>
+        <span class="badge confirmed">Reservation made</span>
+        <p>Sunset drinks at <span class="venue">Red&rsquo;s Ice House</span> &mdash; live music, shrimp boats drifting by. Dinner at <span class="venue">NICO</span> on Shem Creek.</p>
+        <div class="block-photo">
+          <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Waterfront seafood dining" loading="lazy">
+          <span class="photo-label">Shem Creek at sunset</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider"></div>
+
+  <!-- DAY 3 -->
+  <div class="day">
+    <div class="day-header">
+      <div class="day-number explore">3</div>
+      <div class="day-meta">
+        <div class="day-label">Explore</div>
+        <div class="day-title">Cypress Gardens + downtown Charleston</div>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="block">
+        <div class="block-header">
+          <span class="block-time">Morning</span>
+          <span class="block-distance">40 min north</span>
+        </div>
+        <span class="badge notebook">The Notebook</span>
+        <p><span class="venue">Cypress Gardens</span> &mdash; the swamp where they filmed the rowboat scene. Opens at 9am. You can rent a rowboat and paddle through the same water. ~$10/person admission. Allow about 2 hours for the boat ride and trails.</p>
+        <div class="block-photo">
+          <img src="https://images.unsplash.com/photo-1541592553160-82008b127ccb?w=800&q=80" alt="Cypress swamp with Spanish moss" loading="lazy">
+          <span class="photo-label">Cypress Gardens</span>
+        </div>
+      </div>
+    </div>
+    <div class="callout notebook">
+      <strong>Heads up:</strong> The swans were brought in for filming and aren&rsquo;t there anymore &mdash; but the cypress trees, Spanish moss, and water look exactly the same. Very romantic and photogenic. Bring cash for the rowboat rental.
+    </div>
+    <div class="timeline">
+      <div class="block">
+        <div class="block-header">
+          <span class="block-time">Early afternoon</span>
+          <span class="block-distance">45 min to downtown</span>
+        </div>
+        <p>Drive to downtown Charleston. Walk <span class="venue">Rainbow Row</span> and <span class="venue">The Battery</span> &mdash; pastel row houses and the waterfront promenade. If it&rsquo;s Saturday, catch the tail end of the <span class="venue">Farmers Market</span> at Marion Square (closes 2pm).</p>
+        <div class="block-photo">
+          <img src="https://images.unsplash.com/photo-1569587112025-0d460e81a126?w=800&q=80" alt="Rainbow Row Charleston" loading="lazy">
+          <span class="photo-label">Rainbow Row</span>
+        </div>
+      </div>
+      <div class="block">
+        <div class="block-header">
+          <span class="block-time">Afternoon</span>
+        </div>
+        <p>Browse <span class="venue">King Street</span> &mdash; antiques on Lower King, boutiques on Middle King. Pop through the <span class="venue">City Market</span> for sweetgrass baskets and local art. Cool off at <span class="venue">Waterfront Park</span> by the pineapple fountain.</p>
+      </div>
+
+      <div class="options-block">
+        <div class="block-header">
+          <span class="block-time">Dinner</span>
+          <span class="block-distance">downtown options</span>
+        </div>
+        <div class="option-with-photo">
+          <div class="option-thumb">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=200&q=80" alt="Fine dining candlelit" loading="lazy">
+          </div>
+          <div class="option-info">
+            <span class="option-name">Peninsula Grill</span>
+            <span class="option-desc">Candlelit courtyard, most romantic, legendary coconut cake</span>
+          </div>
+        </div>
+        <div class="option-with-photo">
+          <div class="option-thumb">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=200&q=80" alt="Italian restaurant" loading="lazy">
+          </div>
+          <div class="option-info">
+            <span class="option-name">Sorelle</span>
+            <span class="option-desc">Best Italian in Charleston, handmade pasta, book ahead</span>
+          </div>
+        </div>
+        <div class="option-with-photo">
+          <div class="option-thumb">
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=200&q=80" alt="Spanish tapas" loading="lazy">
+          </div>
+          <div class="option-info">
+            <span class="option-name">Malagon</span>
+            <span class="option-desc">Michelin-starred Spanish taperia, relaxed but special</span>
+          </div>
+        </div>
+        <div class="option-with-photo">
+          <div class="option-thumb">
+            <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=200&q=80" alt="Oyster bar" loading="lazy">
+          </div>
+          <div class="option-info">
+            <span class="option-name">Darling Oyster Bar</span>
+            <span class="option-desc">Stylish raw bar on Upper King, more casual</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="options-block">
+        <div class="block-header">
+          <span class="block-time">Nightcap</span>
+          <span class="block-distance">downtown options</span>
+        </div>
+        <div class="option-with-photo">
+          <div class="option-thumb">
+            <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=200&q=80" alt="Cocktail bar" loading="lazy">
+          </div>
+          <div class="option-info">
+            <span class="option-name">Vintage Lounge</span>
+            <span class="option-desc">Most beautiful bar in SC, restored historic building on Upper King</span>
+          </div>
+        </div>
+        <div class="option-with-photo">
+          <div class="option-thumb">
+            <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=200&q=80" alt="Craft cocktails" loading="lazy">
+          </div>
+          <div class="option-info">
+            <span class="option-name">The Gin Joint</span>
+            <span class="option-desc">No menu &mdash; bartender makes what you describe. Intimate</span>
+          </div>
+        </div>
+        <div class="option-with-photo">
+          <div class="option-thumb">
+            <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=200&q=80" alt="Rooftop bar at night" loading="lazy">
+          </div>
+          <div class="option-info">
+            <span class="option-name">Rooftop at Vendue</span>
+            <span class="option-desc">Open-air rooftop, harbor views, great last drink before driving back</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider"></div>
+
+  <!-- DAY 4 -->
+  <div class="day">
+    <div class="day-header">
+      <div class="day-number beach">4</div>
+      <div class="day-meta">
+        <div class="day-label">Beach day</div>
+        <div class="day-title">Isle of Palms + farewell dinner</div>
+      </div>
+    </div>
+
+    <div class="photo-strip single">
+      <div class="photo-card wide">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1000&q=80" alt="Wide sandy beach" loading="lazy">
+        <span class="photo-label">Isle of Palms</span>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="block">
+        <div class="block-header">
+          <span class="block-time">Morning</span>
+          <span class="block-distance">20 min drive</span>
+        </div>
+        <p><span class="venue">Isle of Palms County Park</span> &mdash; chair and umbrella rentals, restrooms, snack bar. Wider beach with more to do. Try paddleboarding or just spread out.</p>
+      </div>
+      <div class="block">
+        <div class="block-header">
+          <span class="block-time">Afternoon</span>
+        </div>
+        <p>Full beach day &mdash; no need to rush off anywhere.</p>
+      </div>
+      <div class="options-block">
+        <div class="block-header">
+          <span class="block-time">Farewell dinner</span>
+          <span class="block-distance">your pick</span>
+        </div>
+        <div class="option-with-photo">
+          <div class="option-thumb">
+            <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=200&q=80" alt="Harbor sunset dining" loading="lazy">
+          </div>
+          <div class="option-info">
+            <span class="option-name">Fish House rooftop</span>
+            <span class="option-desc">Walk from your room, sunset over the harbor</span>
+          </div>
+        </div>
+        <div class="option-with-photo">
+          <div class="option-thumb">
+            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=200&q=80" alt="Fresh seafood platter" loading="lazy">
+          </div>
+          <div class="option-info">
+            <span class="option-name">The Wreck</span>
+            <span class="option-desc">Freshest catch in town, no-frills, cash only &middot; Shem Creek 7 min</span>
+          </div>
+        </div>
+        <div class="option-with-photo">
+          <div class="option-thumb">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=200&q=80" alt="Intimate restaurant interior" loading="lazy">
+          </div>
+          <div class="option-info">
+            <span class="option-name">Post House</span>
+            <span class="option-desc">Intimate coastal tavern, perfect closer &middot; Old Village 8 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider"></div>
+
+  <!-- DAY 5 -->
+  <div class="day">
+    <div class="day-header">
+      <div class="day-number depart">5</div>
+      <div class="day-meta">
+        <div class="day-label">Departure</div>
+        <div class="day-title">Lazy morning + brunch</div>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="options-block">
+        <div class="block-header">
+          <span class="block-time">Brunch</span>
+          <span class="block-distance">all nearby</span>
+        </div>
+        <div class="option-with-photo">
+          <div class="option-thumb">
+            <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=200&q=80" alt="Southern brunch spread" loading="lazy">
+          </div>
+          <div class="option-info">
+            <span class="option-name">Page&rsquo;s Okra Grill</span>
+            <span class="option-desc">Big Southern spread &mdash; biscuits, shrimp and grits, fried green tomatoes &middot; 8 min</span>
+          </div>
+        </div>
+        <div class="option-with-photo">
+          <div class="option-thumb">
+            <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=200&q=80" alt="Brunch with water view" loading="lazy">
+          </div>
+          <div class="option-info">
+            <span class="option-name">Vickery&rsquo;s</span>
+            <span class="option-desc">Cuban-inspired brunch on Shem Creek with water views &middot; 7 min</span>
+          </div>
+        </div>
+        <div class="option-with-photo">
+          <div class="option-thumb">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=200&q=80" alt="Casual brunch spot" loading="lazy">
+          </div>
+          <div class="option-info">
+            <span class="option-name">Coleman Public House</span>
+            <span class="option-desc">Laid-back brunch, great beer list if you&rsquo;re in no hurry &middot; 8 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking checklist -->
+  <div class="booking">
+    <h3>To book &amp; remember</h3>
+    <div class="booking-item">
+      <div class="booking-check done"></div>
+      <div class="booking-text"><strong>NICO dinner</strong> &mdash; reservation confirmed</div>
+    </div>
+    <div class="booking-item">
+      <div class="booking-check"></div>
+      <div class="booking-text"><strong>Downtown dinner (Day 3)</strong> &mdash; book Peninsula Grill or Sorelle soon</div>
+    </div>
+    <div class="booking-item">
+      <div class="booking-check"></div>
+      <div class="booking-text"><strong>Cypress Gardens</strong> &mdash; no reservation needed, opens 9am, ~$10/pp, bring cash for rowboat</div>
+    </div>
+    <div class="booking-item">
+      <div class="booking-check"></div>
+      <div class="booking-text"><strong>Patriots Point driving range</strong> &mdash; no reservation needed, walk over</div>
+    </div>
+    <div class="booking-item">
+      <div class="booking-check"></div>
+      <div class="booking-text"><strong>IOP County Park</strong> &mdash; small parking fee, arrive by 10am weekends for easy parking</div>
+    </div>
+    <div class="booking-item">
+      <div class="booking-check"></div>
+      <div class="booking-text"><strong>Packing</strong> &mdash; one nicer outfit for downtown evening, sunscreen (late April sun is sneaky strong)</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Michael &amp; Stephanie &middot; Charleston &middot; April 2026
+</div>
+
+</body>
+</html>
