@@ -189,105 +189,55 @@ body {
 
 .week-note strong { font-weight: 500; color: var(--ink); }
 
-/* Photo cards */
-.photo-strip {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin: 16px 0 12px;
+/* Map links (replace photos) */
+.map-link-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 16px;
   margin-left: 57px;
 }
 
-.photo-strip.triple {
-  grid-template-columns: 1fr 1fr 1fr;
-}
-
-.photo-strip.single {
-  grid-template-columns: 1fr;
-}
-
-.photo-card {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  aspect-ratio: 16/10;
-  background: linear-gradient(135deg, var(--ocean-light) 0%, var(--marsh-light) 100%);
-}
-
-a.photo-card,
-a.block-photo,
-a.option-thumb {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  cursor: pointer;
-}
-
-.photo-card img,
-.block-photo img,
-.option-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.6s ease, opacity 0.3s ease;
-  opacity: 0;
-}
-
-.photo-card img.loaded,
-.block-photo img.loaded,
-.option-thumb img.loaded {
-  opacity: 1;
-}
-
-.photo-card:hover img.loaded {
-  transform: scale(1.04);
-}
-
-.photo-card::after,
-.block-photo::after {
-  content: '';
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.92) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232C4F5E'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E") center/16px no-repeat;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.photo-card:hover::after,
-.block-photo:hover::after {
-  opacity: 1;
-}
-
-.photo-card .photo-label {
-  position: absolute;
-  bottom: 0;
-  left: 0; right: 0;
-  padding: 24px 12px 10px;
-  background: linear-gradient(to top, rgba(42,37,32,0.75) 0%, transparent 100%);
+.map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
+  font-size: 10.5px;
   font-weight: 400;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.95);
-  pointer-events: none;
+  color: var(--ocean-deep);
+  text-decoration: none;
+  padding: 7px 13px 7px 11px;
+  border-radius: 100px;
+  background: var(--marsh-pale);
+  border: 1px solid transparent;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
 }
 
-.photo-card.tall {
-  aspect-ratio: 3/4;
+.map-link::before {
+  content: '';
+  width: 11px;
+  height: 11px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232C4F5E'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E") center/contain no-repeat;
+  flex-shrink: 0;
 }
 
-.photo-card.wide {
-  aspect-ratio: 21/9;
-  grid-column: 1 / -1;
+.map-link:hover {
+  background: var(--ocean-deep);
+  color: var(--white);
+  border-color: var(--ocean-deep);
+}
+
+.map-link:hover::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FEFCF9'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E");
+}
+
+.block .map-link {
+  margin-top: 10px;
+  margin-right: 6px;
 }
 
 /* Day sections */
@@ -396,38 +346,6 @@ a.option-thumb {
 .block p { font-size: 14px; color: var(--ink-soft); line-height: 1.7; }
 .block .venue { font-weight: 500; color: var(--ink); }
 
-/* Inline photo in block */
-.block-photo {
-  border-radius: 10px;
-  overflow: hidden;
-  margin-top: 12px;
-  aspect-ratio: 21/9;
-  position: relative;
-  background: linear-gradient(135deg, var(--ocean) 0%, var(--marsh) 100%);
-}
-
-.block-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.block-photo .photo-label {
-  position: absolute;
-  bottom: 0;
-  left: 0; right: 0;
-  padding: 20px 12px 8px;
-  background: linear-gradient(to top, rgba(42,37,32,0.7) 0%, transparent 100%);
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.95);
-  pointer-events: none;
-}
-
 /* Badges */
 .badge {
   display: inline-block;
@@ -495,37 +413,46 @@ a.option-thumb {
 .option-desc { font-size: 13px; color: var(--ink-faint); line-height: 1.5; }
 .option-dash { color: var(--driftwood); flex-shrink: 0; }
 
-/* Option with photo */
-.option-with-photo {
+/* Option as link to map */
+.option-row {
   padding: 10px 0;
   border-bottom: 1px solid var(--sand);
-  display: flex;
-  gap: 14px;
+}
+
+.option-row:last-child { border-bottom: none; }
+
+a.option-name {
+  display: inline-flex;
   align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  white-space: normal;
 }
 
-.option-with-photo:last-child { border-bottom: none; }
-
-.option-thumb {
-  width: 84px;
-  height: 84px;
-  border-radius: 10px;
-  overflow: hidden;
+a.option-name::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239B938A'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E") center/contain no-repeat;
   flex-shrink: 0;
-  background: linear-gradient(135deg, var(--driftwood) 0%, var(--marsh-light) 100%);
-  box-shadow: 0 2px 8px rgba(42, 37, 32, 0.06);
+  transition: opacity 0.2s ease;
+  opacity: 0.65;
 }
 
-.option-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+a.option-name:hover {
+  color: var(--ocean-deep);
 }
 
-.option-info { flex: 1; }
-.option-info .option-name { font-size: 14px; margin-bottom: 2px; display: block; }
-.option-info .option-desc { font-size: 12px; display: block; }
+a.option-name:hover::after {
+  opacity: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232C4F5E'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E");
+}
+
+.option-row .option-name { display: inline-flex; margin-bottom: 3px; font-size: 14px; }
+.option-row .option-desc { display: block; font-size: 13px; }
 
 /* Divider */
 .day-divider {
@@ -640,10 +567,7 @@ a.option-thumb {
   .block::before, .options-block::before { left: -31px; }
   .callout { margin-left: calc(12px + 24px + 1px); }
   .day-title { font-size: 19px; }
-  .photo-strip { margin-left: 37px; }
-  .photo-strip.triple { grid-template-columns: 1fr 1fr; }
-  .option-with-photo { flex-direction: column; align-items: flex-start; }
-  .option-thumb { width: 100%; height: 140px; border-radius: 10px; }
+  .map-link-strip { margin-left: 37px; }
 }
 </style>
 </head>
@@ -694,7 +618,7 @@ a.option-thumb {
           <span class="block-time">Midnight</span>
         </div>
         <p>Arrive at the resort, check in, and crash. The trip starts tomorrow &mdash; no need to do anything tonight.</p>
-        <a class="block-photo" href="https://www.google.com/maps/search/?api=1&query=Charleston+Harbor+Resort+Mount+Pleasant+SC" target="_blank" rel="noopener" data-place="Charleston+Harbor+Resort+Mount+Pleasant+SC"><img alt="Charleston Harbor" loading="lazy"><span class="photo-label">Charleston Harbor</span></a>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Charleston+Harbor+Resort+Mount+Pleasant+SC" target="_blank" rel="noopener">Charleston Harbor Resort</a>
       </div>
     </div>
   </div>
@@ -711,9 +635,9 @@ a.option-thumb {
       </div>
     </div>
 
-    <div class="photo-strip">
-      <a class="photo-card" href="https://www.google.com/maps/search/?api=1&query=Charleston+Harbor+Resort+Beach+Mount+Pleasant+SC" target="_blank" rel="noopener" data-place="Charleston+Harbor+Resort+Beach+Mount+Pleasant+SC"><img alt="Resort beach" loading="lazy"><span class="photo-label">Resort beach</span></a>
-      <a class="photo-card" href="https://www.google.com/maps/search/?api=1&query=Patriots+Point+Links+Mount+Pleasant+SC" target="_blank" rel="noopener" data-place="Patriots+Point+Links+Mount+Pleasant+SC"><img alt="Patriots Point Links" loading="lazy"><span class="photo-label">Patriots Point Links</span></a>
+    <div class="map-link-strip">
+      <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Charleston+Harbor+Resort+Beach+Mount+Pleasant+SC" target="_blank" rel="noopener">Resort beach</a>
+      <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Patriots+Point+Links+Mount+Pleasant+SC" target="_blank" rel="noopener">Patriots Point Links</a>
     </div>
 
     <div class="timeline">
@@ -744,7 +668,8 @@ a.option-thumb {
         </div>
         <span class="badge confirmed">Reservation made</span>
         <p>Sunset drinks at <span class="venue">Red&rsquo;s Ice House</span> &mdash; live music, shrimp boats drifting by. Dinner at <span class="venue">NICO</span> on Shem Creek.</p>
-        <a class="block-photo" href="https://www.google.com/maps/search/?api=1&query=NICO+Restaurant+Shem+Creek+Mount+Pleasant+SC" target="_blank" rel="noopener" data-place="NICO+Restaurant+Shem+Creek+Mount+Pleasant+SC"><img alt="Shem Creek at sunset" loading="lazy"><span class="photo-label">Shem Creek at sunset</span></a>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Red%27s+Ice+House+Shem+Creek+Mount+Pleasant+SC" target="_blank" rel="noopener">Red&rsquo;s Ice House</a>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=NICO+Restaurant+Shem+Creek+Mount+Pleasant+SC" target="_blank" rel="noopener">NICO on Shem Creek</a>
       </div>
     </div>
   </div>
@@ -768,7 +693,7 @@ a.option-thumb {
         </div>
         <span class="badge notebook">The Notebook</span>
         <p><span class="venue">Cypress Gardens</span> &mdash; the swamp where they filmed the rowboat scene. Opens at 9am. You can rent a rowboat and paddle through the same water. ~$10/person admission. Allow about 2 hours for the boat ride and trails.</p>
-        <a class="block-photo" href="https://www.google.com/maps/search/?api=1&query=Cypress+Gardens+Moncks+Corner+SC" target="_blank" rel="noopener" data-place="Cypress+Gardens+Moncks+Corner+SC"><img alt="Cypress Gardens" loading="lazy"><span class="photo-label">Cypress Gardens</span></a>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Cypress+Gardens+Moncks+Corner+SC" target="_blank" rel="noopener">Cypress Gardens</a>
       </div>
     </div>
     <div class="callout notebook">
@@ -781,7 +706,9 @@ a.option-thumb {
           <span class="block-distance">45 min to downtown</span>
         </div>
         <p>Drive to downtown Charleston. Walk <span class="venue">Rainbow Row</span> and <span class="venue">The Battery</span> &mdash; pastel row houses and the waterfront promenade. If it&rsquo;s Saturday, catch the tail end of the <span class="venue">Farmers Market</span> at Marion Square (closes 2pm).</p>
-        <a class="block-photo" href="https://www.google.com/maps/search/?api=1&query=Rainbow+Row+Charleston+SC" target="_blank" rel="noopener" data-place="Rainbow+Row+Charleston+SC"><img alt="Rainbow Row" loading="lazy"><span class="photo-label">Rainbow Row</span></a>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Rainbow+Row+Charleston+SC" target="_blank" rel="noopener">Rainbow Row</a>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=The+Battery+Charleston+SC" target="_blank" rel="noopener">The Battery</a>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Marion+Square+Farmers+Market+Charleston+SC" target="_blank" rel="noopener">Farmers Market</a>
       </div>
       <div class="block">
         <div class="block-header">
@@ -795,33 +722,21 @@ a.option-thumb {
           <span class="block-time">Dinner</span>
           <span class="block-distance">downtown options</span>
         </div>
-        <div class="option-with-photo">
-          <a class="option-thumb" href="https://www.google.com/maps/search/?api=1&query=Peninsula+Grill+Charleston+SC" target="_blank" rel="noopener" data-place="Peninsula+Grill+Charleston+SC"><img alt="Peninsula Grill" loading="lazy"></a>
-          <div class="option-info">
-            <span class="option-name">Peninsula Grill</span>
-            <span class="option-desc">Candlelit courtyard, most romantic, legendary coconut cake</span>
-          </div>
+        <div class="option-row">
+          <a class="option-name" href="https://www.google.com/maps/search/?api=1&query=Peninsula+Grill+Charleston+SC" target="_blank" rel="noopener">Peninsula Grill</a>
+          <span class="option-desc">Candlelit courtyard, most romantic, legendary coconut cake</span>
         </div>
-        <div class="option-with-photo">
-          <a class="option-thumb" href="https://www.google.com/maps/search/?api=1&query=Sorelle+Restaurant+Charleston+SC" target="_blank" rel="noopener" data-place="Sorelle+Restaurant+Charleston+SC"><img alt="Sorelle" loading="lazy"></a>
-          <div class="option-info">
-            <span class="option-name">Sorelle</span>
-            <span class="option-desc">Best Italian in Charleston, handmade pasta, book ahead</span>
-          </div>
+        <div class="option-row">
+          <a class="option-name" href="https://www.google.com/maps/search/?api=1&query=Sorelle+Restaurant+Charleston+SC" target="_blank" rel="noopener">Sorelle</a>
+          <span class="option-desc">Best Italian in Charleston, handmade pasta, book ahead</span>
         </div>
-        <div class="option-with-photo">
-          <a class="option-thumb" href="https://www.google.com/maps/search/?api=1&query=Malagon+Restaurant+Charleston+SC" target="_blank" rel="noopener" data-place="Malagon+Restaurant+Charleston+SC"><img alt="Malagon" loading="lazy"></a>
-          <div class="option-info">
-            <span class="option-name">Malagon</span>
-            <span class="option-desc">Michelin-starred Spanish taperia, relaxed but special</span>
-          </div>
+        <div class="option-row">
+          <a class="option-name" href="https://www.google.com/maps/search/?api=1&query=Malagon+Restaurant+Charleston+SC" target="_blank" rel="noopener">Malagon</a>
+          <span class="option-desc">Michelin-starred Spanish taperia, relaxed but special</span>
         </div>
-        <div class="option-with-photo">
-          <a class="option-thumb" href="https://www.google.com/maps/search/?api=1&query=Darling+Oyster+Bar+Charleston+SC" target="_blank" rel="noopener" data-place="Darling+Oyster+Bar+Charleston+SC"><img alt="Darling Oyster Bar" loading="lazy"></a>
-          <div class="option-info">
-            <span class="option-name">Darling Oyster Bar</span>
-            <span class="option-desc">Stylish raw bar on Upper King, more casual</span>
-          </div>
+        <div class="option-row">
+          <a class="option-name" href="https://www.google.com/maps/search/?api=1&query=Darling+Oyster+Bar+Charleston+SC" target="_blank" rel="noopener">Darling Oyster Bar</a>
+          <span class="option-desc">Stylish raw bar on Upper King, more casual</span>
         </div>
       </div>
 
@@ -830,26 +745,17 @@ a.option-thumb {
           <span class="block-time">Nightcap</span>
           <span class="block-distance">downtown options</span>
         </div>
-        <div class="option-with-photo">
-          <a class="option-thumb" href="https://www.google.com/maps/search/?api=1&query=Vintage+Lounge+Charleston+SC" target="_blank" rel="noopener" data-place="Vintage+Lounge+Charleston+SC"><img alt="Vintage Lounge" loading="lazy"></a>
-          <div class="option-info">
-            <span class="option-name">Vintage Lounge</span>
-            <span class="option-desc">Most beautiful bar in SC, restored historic building on Upper King</span>
-          </div>
+        <div class="option-row">
+          <a class="option-name" href="https://www.google.com/maps/search/?api=1&query=Vintage+Lounge+Charleston+SC" target="_blank" rel="noopener">Vintage Lounge</a>
+          <span class="option-desc">Most beautiful bar in SC, restored historic building on Upper King</span>
         </div>
-        <div class="option-with-photo">
-          <a class="option-thumb" href="https://www.google.com/maps/search/?api=1&query=The+Gin+Joint+Charleston+SC" target="_blank" rel="noopener" data-place="The+Gin+Joint+Charleston+SC"><img alt="The Gin Joint" loading="lazy"></a>
-          <div class="option-info">
-            <span class="option-name">The Gin Joint</span>
-            <span class="option-desc">No menu &mdash; bartender makes what you describe. Intimate</span>
-          </div>
+        <div class="option-row">
+          <a class="option-name" href="https://www.google.com/maps/search/?api=1&query=The+Gin+Joint+Charleston+SC" target="_blank" rel="noopener">The Gin Joint</a>
+          <span class="option-desc">No menu &mdash; bartender makes what you describe. Intimate</span>
         </div>
-        <div class="option-with-photo">
-          <a class="option-thumb" href="https://www.google.com/maps/search/?api=1&query=The+Rooftop+Vendue+Charleston+SC" target="_blank" rel="noopener" data-place="The+Rooftop+Vendue+Charleston+SC"><img alt="Rooftop at Vendue" loading="lazy"></a>
-          <div class="option-info">
-            <span class="option-name">Rooftop at Vendue</span>
-            <span class="option-desc">Open-air rooftop, harbor views, great last drink before driving back</span>
-          </div>
+        <div class="option-row">
+          <a class="option-name" href="https://www.google.com/maps/search/?api=1&query=The+Rooftop+Vendue+Charleston+SC" target="_blank" rel="noopener">Rooftop at Vendue</a>
+          <span class="option-desc">Open-air rooftop, harbor views, great last drink before driving back</span>
         </div>
       </div>
     </div>
@@ -867,8 +773,8 @@ a.option-thumb {
       </div>
     </div>
 
-    <div class="photo-strip single">
-      <a class="photo-card wide" href="https://www.google.com/maps/search/?api=1&query=Isle+of+Palms+County+Park+SC" target="_blank" rel="noopener" data-place="Isle+of+Palms+County+Park+SC"><img alt="Isle of Palms" loading="lazy"><span class="photo-label">Isle of Palms</span></a>
+    <div class="map-link-strip">
+      <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Isle+of+Palms+County+Park+SC" target="_blank" rel="noopener">Isle of Palms County Park</a>
     </div>
 
     <div class="timeline">
@@ -890,26 +796,17 @@ a.option-thumb {
           <span class="block-time">Farewell dinner</span>
           <span class="block-distance">your pick</span>
         </div>
-        <div class="option-with-photo">
-          <a class="option-thumb" href="https://www.google.com/maps/search/?api=1&query=Charleston+Harbor+Fish+House+Mount+Pleasant+SC" target="_blank" rel="noopener" data-place="Charleston+Harbor+Fish+House+Mount+Pleasant+SC"><img alt="Fish House" loading="lazy"></a>
-          <div class="option-info">
-            <span class="option-name">Fish House rooftop</span>
-            <span class="option-desc">Walk from your room, sunset over the harbor</span>
-          </div>
+        <div class="option-row">
+          <a class="option-name" href="https://www.google.com/maps/search/?api=1&query=Charleston+Harbor+Fish+House+Mount+Pleasant+SC" target="_blank" rel="noopener">Fish House rooftop</a>
+          <span class="option-desc">Walk from your room, sunset over the harbor</span>
         </div>
-        <div class="option-with-photo">
-          <a class="option-thumb" href="https://www.google.com/maps/search/?api=1&query=The+Wreck+of+the+Richard+and+Charlene+Mount+Pleasant+SC" target="_blank" rel="noopener" data-place="The+Wreck+of+the+Richard+and+Charlene+Mount+Pleasant+SC"><img alt="The Wreck" loading="lazy"></a>
-          <div class="option-info">
-            <span class="option-name">The Wreck</span>
-            <span class="option-desc">Freshest catch in town, no-frills, cash only &middot; Shem Creek 7 min</span>
-          </div>
+        <div class="option-row">
+          <a class="option-name" href="https://www.google.com/maps/search/?api=1&query=The+Wreck+of+the+Richard+and+Charlene+Mount+Pleasant+SC" target="_blank" rel="noopener">The Wreck</a>
+          <span class="option-desc">Freshest catch in town, no-frills, cash only &middot; Shem Creek 7 min</span>
         </div>
-        <div class="option-with-photo">
-          <a class="option-thumb" href="https://www.google.com/maps/search/?api=1&query=The+Post+House+Inn+Mount+Pleasant+SC" target="_blank" rel="noopener" data-place="The+Post+House+Inn+Mount+Pleasant+SC"><img alt="Post House" loading="lazy"></a>
-          <div class="option-info">
-            <span class="option-name">Post House</span>
-            <span class="option-desc">Intimate coastal tavern, perfect closer &middot; Old Village 8 min</span>
-          </div>
+        <div class="option-row">
+          <a class="option-name" href="https://www.google.com/maps/search/?api=1&query=The+Post+House+Inn+Mount+Pleasant+SC" target="_blank" rel="noopener">Post House</a>
+          <span class="option-desc">Intimate coastal tavern, perfect closer &middot; Old Village 8 min</span>
         </div>
       </div>
     </div>
@@ -932,26 +829,17 @@ a.option-thumb {
           <span class="block-time">Brunch</span>
           <span class="block-distance">all nearby</span>
         </div>
-        <div class="option-with-photo">
-          <a class="option-thumb" href="https://www.google.com/maps/search/?api=1&query=Page%27s+Okra+Grill+Mount+Pleasant+SC" target="_blank" rel="noopener" data-place="Page%27s+Okra+Grill+Mount+Pleasant+SC"><img alt="Page's Okra Grill" loading="lazy"></a>
-          <div class="option-info">
-            <span class="option-name">Page&rsquo;s Okra Grill</span>
-            <span class="option-desc">Big Southern spread &mdash; biscuits, shrimp and grits, fried green tomatoes &middot; 8 min</span>
-          </div>
+        <div class="option-row">
+          <a class="option-name" href="https://www.google.com/maps/search/?api=1&query=Page%27s+Okra+Grill+Mount+Pleasant+SC" target="_blank" rel="noopener">Page&rsquo;s Okra Grill</a>
+          <span class="option-desc">Big Southern spread &mdash; biscuits, shrimp and grits, fried green tomatoes &middot; 8 min</span>
         </div>
-        <div class="option-with-photo">
-          <a class="option-thumb" href="https://www.google.com/maps/search/?api=1&query=Vickery%27s+Shem+Creek+Mount+Pleasant+SC" target="_blank" rel="noopener" data-place="Vickery%27s+Shem+Creek+Mount+Pleasant+SC"><img alt="Vickery's" loading="lazy"></a>
-          <div class="option-info">
-            <span class="option-name">Vickery&rsquo;s</span>
-            <span class="option-desc">Cuban-inspired brunch on Shem Creek with water views &middot; 7 min</span>
-          </div>
+        <div class="option-row">
+          <a class="option-name" href="https://www.google.com/maps/search/?api=1&query=Vickery%27s+Shem+Creek+Mount+Pleasant+SC" target="_blank" rel="noopener">Vickery&rsquo;s</a>
+          <span class="option-desc">Cuban-inspired brunch on Shem Creek with water views &middot; 7 min</span>
         </div>
-        <div class="option-with-photo">
-          <a class="option-thumb" href="https://www.google.com/maps/search/?api=1&query=Coleman+Public+House+Mount+Pleasant+SC" target="_blank" rel="noopener" data-place="Coleman+Public+House+Mount+Pleasant+SC"><img alt="Coleman Public House" loading="lazy"></a>
-          <div class="option-info">
-            <span class="option-name">Coleman Public House</span>
-            <span class="option-desc">Laid-back brunch, great beer list if you&rsquo;re in no hurry &middot; 8 min</span>
-          </div>
+        <div class="option-row">
+          <a class="option-name" href="https://www.google.com/maps/search/?api=1&query=Coleman+Public+House+Mount+Pleasant+SC" target="_blank" rel="noopener">Coleman Public House</a>
+          <span class="option-desc">Laid-back brunch, great beer list if you&rsquo;re in no hurry &middot; 8 min</span>
         </div>
       </div>
     </div>
@@ -992,79 +880,5 @@ a.option-thumb {
   Michael &amp; Stephanie &middot; Charleston &middot; April 2026
 </div>
 
-<script>
-  // ========================================================================
-  //  Google Places API key
-  //  1. Paste your key below between the quotes
-  //  2. In Google Cloud Console, enable "Places API (New)" on the same project
-  //  3. Restrict the key by HTTP referrer to the domain(s) this page loads from
-  //     (e.g. https://yourusername.github.io/*, http://localhost/*)
-  // ========================================================================
-  const GOOGLE_PLACES_API_KEY = '';
-
-  (function() {
-    if (!GOOGLE_PLACES_API_KEY) return;
-
-    const CACHE_KEY = 'charleston-places-v1';
-    const CACHE_TTL = 7 * 24 * 60 * 60 * 1000; // 7 days
-    let cache = {};
-    try {
-      const raw = localStorage.getItem(CACHE_KEY);
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        if (parsed && parsed.ts && Date.now() - parsed.ts < CACHE_TTL) {
-          cache = parsed.data || {};
-        }
-      }
-    } catch (e) {}
-
-    function saveCache() {
-      try {
-        localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: cache }));
-      } catch (e) {}
-    }
-
-    async function getPhotoUrl(query) {
-      if (cache[query] === null) return null;
-      if (cache[query]) return cache[query];
-
-      try {
-        const res = await fetch('https://places.googleapis.com/v1/places:searchText', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-Goog-Api-Key': GOOGLE_PLACES_API_KEY,
-            'X-Goog-FieldMask': 'places.id,places.photos',
-          },
-          body: JSON.stringify({ textQuery: query.replace(/\+/g, ' '), maxResultCount: 1 }),
-        });
-        if (!res.ok) throw new Error('search ' + res.status);
-        const data = await res.json();
-        const place = data.places && data.places[0];
-        if (!place || !place.photos || !place.photos.length) throw new Error('no photos');
-        const photoName = place.photos[0].name;
-        const url = `https://places.googleapis.com/v1/${photoName}/media?maxWidthPx=800&maxHeightPx=600&key=${GOOGLE_PLACES_API_KEY}`;
-        cache[query] = url;
-        saveCache();
-        return url;
-      } catch (e) {
-        cache[query] = null;
-        saveCache();
-        return null;
-      }
-    }
-
-    document.querySelectorAll('[data-place]').forEach(async function(el) {
-      const query = el.dataset.place;
-      const img = el.querySelector('img');
-      if (!img) return;
-      const url = await getPhotoUrl(query);
-      if (!url) return;
-      img.addEventListener('load', function() { img.classList.add('loaded'); });
-      img.addEventListener('error', function() { img.removeAttribute('src'); });
-      img.src = url;
-    });
-  })();
-</script>
 </body>
 </html>
